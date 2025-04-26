@@ -7,23 +7,32 @@ Repositorio para estimar las probabilidades de descenso de equipos de fútbol me
 ## Características principales
 
 - **Modelo Monte Carlo**: simulación de goles con distribución de Poisson.  
-- **Paralelización**: `multiprocessing` y barra de progreso con `tqdm`.  
+- **Paralelización**: `multiprocessing` + `tqdm`.  
 - **Desempate “mini-liga”**: head-to-head (puntos, goal diff, GF) en subgrupos empatados.  
 - **Distribución de posiciones**: probabilidad de cada puesto para cada equipo.  
-- **Exportación**: CSV/JSON y gráficos con `matplotlib`.  
+- **Exportación**: CSV/JSON + gráficos (`matplotlib`).  
 - **Scripts**:  
   - `src/probabilidad_descenso.py`  
   - `src/enumerador_descenso.py`  
-  - `src/fetch_and_simulate.py`  
+  - `src/fetch_and_simulate.py`
+
+---
+
+## Asunciones y validación
+
+1. **Modelo de goles**: Se usa Poisson, basado en estudios que muestran que los goles en fútbol se ajustan a este modelo (p.ej., Dixon & Coles, 1997).  
+2. **Independencia de partidos**: Asumimos resultados independientes entre encuentros.  
+3. **Estimación de parámetros**: Por defecto `lambda` uniforme; para mayor precisión, se puede estimar a partir de datos históricos de cada equipo. Consulta `scripts/utilidad_estimacion.py`.  
+4. **Convergencia**: Recomendamos verificar estabilidad con 5k, 10k y 20k simulaciones, comparando estimaciones y rangos de confianza.
 
 ---
 
 ## Instalación
 
-Requiere Python 3.7+ y:
+Requiere Python 3.7+ y dependencias:
 
 ```bash
-pip install numpy tqdm matplotlib requests python-dateutil
+pip install numpy tqdm matplotlib requests python-dateutil pytest flake8
 ```
 
 O bien:
@@ -53,8 +62,14 @@ Probabilidad-de-Descenso/
 │   ├── CalculadorEscenariosdeDescenso.ipynb  # Históricos originales
 │   ├── Prob_Des_Total_1RFEF.ipynb            # Históricos originales
 │   └── SFCD_Prob.ipynb                       # Históricos originales
-├── requirements.txt            # Dependencias
-└── README.md                   # Documentación
+├── scripts/
+│   └── utilidad_estimacion.py       # Funciones de estimación de parámetros Poisson
+├── tests/
+│   └── test_tiebreak.py            # Pruebas unitarias de desempate mini-liga
+├── .github/
+│   └── workflows/ci.yml            # Pipeline CI: lint y tests
+├── requirements.txt                # Dependencias
+└── README.md                       # Documentación
 ```
 
 ---
@@ -128,14 +143,12 @@ Para **subgrupos empatados** (2+ equipos):
     ...
   }
   ```
-
 - **probs.csv**:
   ```csv
   Team,Relegation,P1,P2,...
   EquipoA,0.7500,0.1000,0.1500,...,0.7500
   ...
   ```
-
 - **relegation_probs.png**: gráfica de barras de probabilidades.  
 
 ---
@@ -160,4 +173,10 @@ python src/fetch_and_simulate.py \
 
 ---
 
-¡Listo! Este README.md refleja todos los scripts, datos y ejemplos, listo para subir al repositorio.
+## CI/CD y calidad de código
+
+- **Tests**: `pytest tests/` ejecuta pruebas unitarias.  
+- **Lint**: `flake8 src/` para estilo.  
+- **Integración Continua**: `.github/workflows/ci.yml` corre lint y tests en cada push.  
+
+---
