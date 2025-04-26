@@ -157,7 +157,3 @@ python src/fetch_and_simulate.py \
   --output outputs/api_probs.json \
   --plot
 ```
-
----
-
-¡Listo! Este README.md refleja todos los scripts, datos y ejemplos, listo para subir al repositorio.
