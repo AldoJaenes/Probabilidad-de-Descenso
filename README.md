@@ -128,12 +128,14 @@ Para **subgrupos empatados** (2+ equipos):
     ...
   }
   ```
+
 - **probs.csv**:
   ```csv
   Team,Relegation,P1,P2,...
   EquipoA,0.7500,0.1000,0.1500,...,0.7500
   ...
   ```
+
 - **relegation_probs.png**: gráfica de barras de probabilidades.  
 
 ---
