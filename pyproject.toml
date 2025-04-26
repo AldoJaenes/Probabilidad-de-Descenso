@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "probabilidad_descenso"
+version = "0.1.0"
+description = "Estimación de probabilidades de descenso de equipos de fútbol."
+authors = [{name="Aldo Jaenes"}]
+license = {text="Creative Commons Attribution-NonCommercial 4.0 International"}
+dependencies = [
+    "numpy",
+    "tqdm",
+    "matplotlib",
+    "requests",
+    "python-dateutil",
+    "jsonschema"
+]
+
+[tool.black]
+line-length = 88
+
+[tool.flake8]
+max-line-length = 88
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov=src --cov-report=term-missing"
+testpaths = ["tests"]

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "patternProperties": {
+    "^[A-Za-z0-9\\s]+$": {
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "integer"
+        },
+        "gf": {
+          "type": "integer"
+        },
+        "ga": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "points",
+        "gf",
+        "ga"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

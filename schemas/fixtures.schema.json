@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "home": {
+        "type": "string"
+      },
+      "away": {
+        "type": "string"
+      },
+      "expected": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "home",
+      "away"
+    ],
+    "additionalProperties": false
+  }
+}
