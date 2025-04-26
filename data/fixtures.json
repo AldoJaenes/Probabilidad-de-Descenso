@@ -1,0 +1,22 @@
+[
+  {
+    "home": "Linense",
+    "away": "Sanse",
+    "expected": [
+      1.2,
+      1.0
+    ]
+  },
+  {
+    "home": "Fuenlabrada",
+    "away": "Badajoz"
+  },
+  {
+    "home": "Sanse",
+    "away": "Badajoz",
+    "expected": [
+      1.1,
+      1.05
+    ]
+  }
+]
